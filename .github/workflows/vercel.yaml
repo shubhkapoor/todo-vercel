@@ -29,4 +29,4 @@ jobs:
         run: echo "DEPLOYMENT_URL=$(vercel deploy --token=${{ secrets.VERCEL_TOKEN }})" >> "$GITHUB_OUTPUT"
 
       - name: Assign alias to deployment
-        run: vercel alias ${{ steps.deploy.outputs.DEPLOYMENT_URL }} agent-trainer-st.fuelix.ai --token=${{ secrets.VERCEL_TOKEN }} --scope=fuelix
+        run: vercel alias ${{ steps.deploy.outputs.DEPLOYMENT_URL }} agent-trainer-st.fuelix.ai --token=${{ secrets.VERCEL_TOKEN }} --scope=shubhkapoor
