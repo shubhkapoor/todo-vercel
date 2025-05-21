@@ -1,7 +1,7 @@
 name: Deploy to Staging
 env:
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID}}
-  VERCEL_PROJECT_ID: ${{ secrets.AX_VERCEL_PROJECT_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
 on:
   push:
@@ -44,11 +44,11 @@ jobs:
         run: pnpm install --global vercel@latest
 
       - name: Pull Vercel Environment Information
-        run: vercel pull --yes --environment=preview --token=${{ secrets.tododemotoken }}
+        run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
 
       - name: Deploy Project Artifacts to Vercel
         id: deploy
-        run: echo "DEPLOYMENT_URL=$(vercel deploy --token=${{ secrets.tododemotoken }})" >> "$GITHUB_OUTPUT"
+        run: echo "DEPLOYMENT_URL=$(vercel deploy --token=${{ secrets.VERCEL_TOKEN }})" >> "$GITHUB_OUTPUT"
 
       - name: Assign alias to deployment
-        run: vercel alias ${{ steps.deploy.outputs.DEPLOYMENT_URL }} agent-trainer-st.fuelix.ai --token=${{ secrets.tododemotoken }} --scope=fuelix
+        run: vercel alias ${{ steps.deploy.outputs.DEPLOYMENT_URL }} agent-trainer-st.fuelix.ai --token=${{ secrets.VERCEL_TOKEN }} --scope=fuelix
