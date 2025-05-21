@@ -18,26 +18,6 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Cache turbo build setup
-        uses: actions/cache@v4
-        with:
-          path: .turbo
-          key: ${{ runner.os }}-turbo-${{ github.sha }}
-          restore-keys: |
-            ${{ runner.os }}-turbo-
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 8 # or whatever version you use locally
-          run_install: false
-
-      - name: Setup Node.js environment
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18
-          cache: "pnpm"
-
       - name: Install Vercel CLI
         run: pnpm install --global vercel@latest
 
